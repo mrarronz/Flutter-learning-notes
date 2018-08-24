@@ -86,19 +86,12 @@ class HomeList extends StatelessWidget {
   Widget _buildListView() {
     return new ListView.builder(
       padding: const EdgeInsets.all(10.0),
-      itemBuilder: (context, i) {
-        i -= 1;
-        if (i.isOdd) {
-          return new Divider();
-        }
-        i = i ~/ 2;
-        return _buildRow(i, context);
-      },
-      itemCount: listItems.length * 2,
+      itemBuilder: _buildRow,
+      itemCount: listItems.length,
     );
   }
 
-  Widget _buildRow(index, context) {
+  Widget _buildRow(BuildContext context, int index) {
     final mapItem = listItems.elementAt(index);
     return new ListTile(
       leading: new Icon(mapItem["image"]),
