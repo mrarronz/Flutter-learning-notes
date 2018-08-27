@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import './pages/FirstDemo.dart';
+import './pages/TourFramework.dart';
+import './pages/Cookbook.dart';
+import './pages/BuildLayout.dart';
 
 void main() => runApp(new HomeList());
 
@@ -98,9 +101,19 @@ class HomeList extends StatelessWidget {
       title: new Text(mapItem["title"], style: _textFont,),
       trailing: new Icon(Icons.chevron_right),
       onTap: () {
+        String title = mapItem["title"];
         switch (index) {
           case 0:
-            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FirstDemo(title: 'First Demo',)));
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FirstDemo(title: title)));
+            break;
+          case 1:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new TourFramework(title: title)));
+            break;
+          case 2:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new Cookbook(title: title)));
+            break;
+          case 3:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new BuildLayout(title: title)));
             break;
         }
       },
