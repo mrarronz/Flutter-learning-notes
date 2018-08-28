@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import './Tour/BasicWidget.dart';
+import './Tour/MaterialWidget.dart';
+import './Tour/FlutterGesture.dart';
+import './Tour/Counter.dart';
+import './Tour/ShoppingList.dart';
 
 class TourFramework extends StatelessWidget {
 
@@ -40,10 +45,39 @@ class TourFramework extends StatelessWidget {
       onTap: () {
         switch (position) {
           case 0:
+            showDialog(
+              context: context,
+              builder: (ctx) => new AlertDialog(
+                title: new Text('Tip'),
+                content: new Text('Hello Flutter!!!'),
+                actions: <Widget>[
+                  new FlatButton(onPressed: () {
+                    Navigator.pop(context);
+                  }, child: new Text('确定'))
+                ],
+              )
+            );
             break;
           case 1:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new BasicWidget()));
             break;
           case 2:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new MaterialWidget()));
+            break;
+          case 3:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FlutterGesture()));
+            break;
+          case 4:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new Counter()));
+            break;
+          case 5:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new ShoppingList(products: <Product>[
+              new Product(name: 'Eggs'),
+              new Product(name: 'Flour'),
+              new Product(name: 'Chocolate chips'),
+              new Product(name: 'icecream'),
+              new Product(name: 'cocacola')
+            ])));
             break;
         }
       },
