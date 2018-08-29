@@ -46,11 +46,11 @@ class ShoppingListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListTile(
       onTap: () {
-        onCartChanged(product, !inCart);
+        onCartChanged(product, inCart);
       },
       leading: new CircleAvatar(
         backgroundColor: _getColor(context),
-        child: new Text(product.name[0]),
+        child: new Text(product.name[0]), // product.name[0]取第一个字符
       ),
       title: new Text(product.name, style: _getTextStyle(context)),
     );
@@ -63,7 +63,7 @@ class _ShoppingListState extends State<ShoppingList> {
 
   void _handleCartChanged(Product product, bool inCart) {
     setState(() {
-      if (inCart) {
+      if (!inCart) {
         _shoppingCart.add(product);
       } else {
         _shoppingCart.remove(product);
