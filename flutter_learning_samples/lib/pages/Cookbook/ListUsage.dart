@@ -6,7 +6,7 @@ class ListUsage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(title: new Text('List Usage')),
-      body: _buildLongList(),
+      body: _buildListViewWithDifferentCells(context),
     );
   }
 
@@ -73,5 +73,51 @@ class ListUsage extends StatelessWidget {
     );
   }
 
+  Widget _buildGridList(BuildContext context) {
+    return new GridView.count(
+      crossAxisCount: 2,
+      children: new List.generate(100, (index) {
+        return new Center(
+          child: new Text('Item $index', style: Theme.of(context).textTheme.headline,),
+        );
+      }),
+    );
+  }
 
+  Widget _buildListViewWithDifferentCells(BuildContext context) {
+    final items = new List<ListItem>.generate(1000, (index) {
+      return index % 6 == 0 ? new HeadingItem("Heading $index") : new MessageItem("Sender $index", "Message body $index");
+    });
+    return new ListView.builder(
+      itemBuilder: (context, index) {
+        final item = items[index];
+        if (item is HeadingItem) {
+          return new ListTile(
+            title: new Text(item.heading, style: Theme.of(context).textTheme.headline),
+          );
+        }
+        else if (item is MessageItem) {
+          return new ListTile(
+            title: new Text(item.sender),
+            subtitle: new Text(item.body),
+          );
+        }
+      },
+      itemCount: items.length,
+    );
+  }
 }
+
+abstract class ListItem{}
+
+class HeadingItem implements ListItem {
+  final String heading;
+  HeadingItem(this.heading);
+}
+
+class MessageItem implements ListItem {
+  final String sender;
+  final String body;
+  MessageItem(this.sender, this.body);
+}
+
