@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import './Cookbook/ThemeUsage.dart';
 import './Cookbook/ImageUsage.dart';
 import './Cookbook/ListUsage.dart';
+import './Cookbook/HandleGesture.dart';
+import './Cookbook/NavigateScreen.dart';
 
 class Cookbook extends StatelessWidget {
 
@@ -12,7 +14,10 @@ class Cookbook extends StatelessWidget {
   final cookbooks = [
     "使用主题共享颜色和字体样式",
     "加载图片",
-    "列表的基本使用"
+    "列表的基本使用",
+    "处理手势",
+    "导航",
+    "网络请求"
   ];
 
   @override
@@ -46,6 +51,12 @@ class Cookbook extends StatelessWidget {
             break;
           case 2:
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new ListUsage()));
+            break;
+          case 3:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new HandleGesture()));
+            break;
+          case 4:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new NavigateScreen()));
             break;
         }
       },
