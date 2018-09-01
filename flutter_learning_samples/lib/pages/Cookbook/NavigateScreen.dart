@@ -7,13 +7,22 @@ class NavigateScreen extends StatelessWidget {
     return new Scaffold(
       appBar: new AppBar(title: new Text('测试页面跳转回传值')),
       body: new Center(
-        child: new RaisedButton(
-            child: new Text('点击跳转到下个页面'),
-            onPressed: () {
-              _navigateAndDisplaySelection(context);
-            }
-        ),
-      ),
+        child: new SelectionButton(),
+      )
+    );
+  }
+}
+
+/// 创建点击的button
+class SelectionButton extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return new RaisedButton(
+      child: new Text('点击跳转到下个页面'),
+      onPressed: () {
+        _navigateAndDisplaySelection(context);
+      }
     );
   }
 
@@ -24,6 +33,7 @@ class NavigateScreen extends StatelessWidget {
   }
 }
 
+/// 创建页面
 class SelectionScreen extends StatelessWidget {
 
   @override
