@@ -11,6 +11,11 @@ import './Cookbook/DrawerDemo.dart';
 import './Cookbook/OrientationWidget.dart';
 import './Cookbook/OpacityAnimateDemo.dart';
 import './Cookbook/HttpDemo.dart';
+import './Cookbook/WebSocketDemo.dart';
+import './Cookbook/JSONConvertDemo.dart';
+import './Cookbook/SharedPreferencesDemo.dart';
+import './Cookbook/FileStorageDemo.dart';
+import './Cookbook/TextFieldAndForm.dart';
 
 class Cookbook extends StatelessWidget {
 
@@ -33,7 +38,7 @@ class Cookbook extends StatelessWidget {
     "网络请求",
     "WebSocket",
     "JSON转换",
-    "使用SharedPreferences进行键值对存储",
+    "SharedPreferences存储基础数据",
     "文件读写",
     "表单使用",
     "Unit Testing",
@@ -109,6 +114,26 @@ class Cookbook extends StatelessWidget {
           case 11:
             /// 网络请求
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new HttpDemo()));
+            break;
+          case 12:
+            /// WebSocket
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new WebSocketDemo()));
+            break;
+          case 13:
+          /// JSON转换
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new JSONConvertDemo()));
+            break;
+          case 14:
+          /// SharedPreferences存取数据
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new SharedPreferencesDemo()));
+            break;
+          case 15:
+          /// 文件读写
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FileStorageDemo()));
+            break;
+          case 16:
+          /// 文件读写
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new TextFieldAndForm()));
             break;
         }
       },
