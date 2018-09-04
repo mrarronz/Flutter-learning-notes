@@ -3,6 +3,7 @@ import './pages/FirstDemo.dart';
 import './pages/TourFramework.dart';
 import './pages/Cookbook.dart';
 import './pages/BuildLayout.dart';
+import './pages/SampleCatalog.dart';
 
 void main() => runApp(new HomeList());
 
@@ -64,6 +65,7 @@ class HomeList extends StatelessWidget {
     {"title": "First demo", "image": Icons.looks_one},
     {"title": "Tour the framework", "image": Icons.explore},
     {"title": "Cookbook", "image": Icons.book},
+    {"title": "Sample catalog", "image": Icons.storage},
     {"title": "Build layouts", "image": Icons.dashboard},
     {"title": "Add Interactivity", "image": Icons.touch_app},
     {"title": "Flutter for Web devs", "image": Icons.web},
@@ -113,6 +115,9 @@ class HomeList extends StatelessWidget {
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new Cookbook(title: title)));
             break;
           case 3:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new SampleCatalog(title: title)));
+            break;
+          case 4:
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new BuildLayout(title: title)));
             break;
         }

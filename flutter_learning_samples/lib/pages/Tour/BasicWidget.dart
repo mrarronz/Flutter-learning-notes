@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 class BasicWidget extends StatelessWidget {
 
@@ -50,4 +51,17 @@ class MyAppBar extends StatelessWidget {
       ),
     );
   }
+}
+
+
+void main() {
+  testWidgets("find a text widget", (WidgetTester tester) async {
+    await tester.pumpWidget(new MaterialApp(
+      home: new Scaffold(
+        body: new Text('Hello World'),
+      ),
+    ));
+
+    expect(find.text('Hello World'), findsOneWidget);
+  });
 }
