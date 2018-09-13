@@ -119,6 +119,7 @@ class HomeList extends StatelessWidget {
             break;
           case 4:
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new BuildLayout(title: title)));
+//          Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (ctx) => new BuildLayout(title: title)));
             break;
         }
       },
