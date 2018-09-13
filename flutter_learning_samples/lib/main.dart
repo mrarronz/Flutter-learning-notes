@@ -4,6 +4,7 @@ import './pages/TourFramework.dart';
 import './pages/Cookbook.dart';
 import './pages/BuildLayout.dart';
 import './pages/SampleCatalog.dart';
+import './pages/AddInteractivity.dart';
 
 void main() => runApp(new HomeList());
 
@@ -120,6 +121,9 @@ class HomeList extends StatelessWidget {
           case 4:
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new BuildLayout(title: title)));
 //          Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (ctx) => new BuildLayout(title: title)));
+            break;
+          case 5:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new AddInteractivity()));
             break;
         }
       },
