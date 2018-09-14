@@ -5,6 +5,7 @@ import './pages/Cookbook.dart';
 import './pages/BuildLayout.dart';
 import './pages/SampleCatalog.dart';
 import './pages/AddInteractivity.dart';
+import './pages/FlutterForWebDev.dart';
 
 void main() => runApp(new HomeList());
 
@@ -124,6 +125,9 @@ class HomeList extends StatelessWidget {
             break;
           case 5:
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new AddInteractivity()));
+            break;
+          case 6:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FlutterForWebDev()));
             break;
         }
       },
