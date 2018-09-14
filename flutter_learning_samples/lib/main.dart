@@ -6,6 +6,9 @@ import './pages/BuildLayout.dart';
 import './pages/SampleCatalog.dart';
 import './pages/AddInteractivity.dart';
 import './pages/FlutterForWebDev.dart';
+import './pages/FlutterForAndroidDev.dart';
+import './pages/FlutterForIOSDev.dart';
+import './pages/FlutterForReactNativeDev.dart';
 
 void main() => runApp(new HomeList());
 
@@ -128,6 +131,15 @@ class HomeList extends StatelessWidget {
             break;
           case 6:
             Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FlutterForWebDev()));
+            break;
+          case 7:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FlutterForAndroidDev()));
+            break;
+          case 8:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FlutterForIOSDev()));
+            break;
+          case 9:
+            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new FlutterForReactNativeDev()));
             break;
         }
       },
