@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'WebDev/WebLayoutBasic.dart';
 
 class FlutterForWebDev extends StatelessWidget {
 
@@ -29,7 +30,12 @@ class EntryItem extends StatelessWidget {
 
   Widget _buildTile(Entry entry) {
     if (entry.children.isEmpty) {
-      return new ListTile(title: new Text(entry.title));
+      return new ListTile(
+        title: new Text(entry.title),
+        onTap: () {
+
+        },
+      );
     }
     return new ExpansionTile(
       title: new Text(entry.title),
@@ -37,6 +43,20 @@ class EntryItem extends StatelessWidget {
       children: entry.children.map(_buildTile).toList(),
     );
   }
+
+//  _onTapListItem(String title) {
+//    switch (title) {
+//      case '给文本添加样式':
+//        Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) => new WebLayoutBasic()));
+//        break;
+//      case '设置背景颜色':
+//        break;
+//      case '居中组件':
+//        break;
+//      case '设置容器宽度':
+//        break;
+//    }
+//  }
 }
 
 class Entry {
