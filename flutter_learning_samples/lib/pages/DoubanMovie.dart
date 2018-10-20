@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../service/Service.dart';
+import 'dart:async';
 
 class DoubanMovie extends StatefulWidget {
 
@@ -12,6 +13,22 @@ class DoubanMovie extends StatefulWidget {
 class DoubanMovieState extends State<DoubanMovie> {
 
   var _movieList;
+  var _startPage = 1;
+  var _pageSize = 10;
+  var _totalCount = 0;
+  ScrollController _controller = new ScrollController();
+
+  DoubanMovieState() {
+    _controller.addListener(() {
+      var maxScroll = _controller.position.maxScrollExtent;
+      var pixels = _controller.position.pixels;
+      if (maxScroll == pixels && _movieList.length < _totalCount) {
+        // scroll to bottom, get next page data
+        print("load more ... ");
+        _loadMovieData();
+      }
+    });
+  }
   
   @override
   void initState() {
@@ -33,9 +50,13 @@ class DoubanMovieState extends State<DoubanMovie> {
         child: new CircularProgressIndicator(),
       );
     } else {
-      return new ListView.builder(
-        itemCount: _movieList.length,
-        itemBuilder: (context, i) => _renderRow(i)
+      return new RefreshIndicator(
+        child: new ListView.builder(
+          itemCount: _movieList.length,
+          itemBuilder: (context, i) => _renderRow(i),
+          controller: _controller,
+        ),
+        onRefresh: _pullToRefresh
       );
     }
   }
@@ -114,11 +135,18 @@ class DoubanMovieState extends State<DoubanMovie> {
       ],
     );
   }
+
+  Future<Null> _pullToRefresh() async {
+    _loadMovieData();
+    return null;
+  }
   
   _loadMovieData() {
-    Service.get('https://api.douban.com/v2/movie/in_theaters?city=北京&start=0&count=20').then((data) {
+    var params = {"city": "北京", "start": _startPage.toString(), "count": _pageSize.toString()};
+    Service.get('https://api.douban.com/v2/movie/in_theaters', params: params).then((data) {
       if (data != null) {
         Map<String, dynamic> map = json.decode(data);
+        var totalNum = map["total"];
         var subjects = map["subjects"] as List;
         var tempList = new List();
         for (var i = 0; i < subjects.length; i++) {
@@ -148,8 +176,26 @@ class DoubanMovieState extends State<DoubanMovie> {
           movieItem["actorNames"] = actors;
           tempList.add(movieItem);
         }
+        var page = _startPage;
+        var tempArr = _movieList;
+        if (tempArr == null) {
+          tempArr = [];
+        }
+        var currentData = new List();
+        if (page == 1) {
+          currentData = tempList;
+        } else {
+          currentData.addAll(_movieList);
+          currentData.addAll(tempList);
+        }
+        if (tempArr.length + tempList.length < totalNum) {
+          page += tempList.length;
+          // 还可以加载更多数据，page为下一次加载从第几条开始
+        }
         setState(() {
-          _movieList = tempList;
+          _movieList = currentData;
+          _startPage = page;
+          _totalCount = totalNum;
         });
       }
     });
