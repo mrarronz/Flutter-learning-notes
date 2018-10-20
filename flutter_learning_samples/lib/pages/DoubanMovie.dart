@@ -86,7 +86,7 @@ class DoubanMovieState extends State<DoubanMovie> {
       children: <Widget>[
         new InkWell(
           child: new Container(
-            color: Colors.white,
+            color: Color(0xFFF5FCFF),
             padding: const EdgeInsets.all(10.0),
             child: new Row(
               children: <Widget>[
